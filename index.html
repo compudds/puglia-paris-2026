@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eric & Dori — Puglia & Paris 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8; --warm-white: #faf8f3; --deep: #1a1410;
+    --terracotta: #a84e20; --gold: #7a6010; --stone: #3e3428;
+    --pale-gold: #c9b45e; --paris-blue: #18285a; --booked: #1e5432;
+    --text: #1a1410; --text-light: #3a3028;
+    --aperitivo: #5a2d82; --sight: #1a4a6a; --lunch-color: #3a5a1a;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { font-size:20px; }
+  body { background:var(--cream); color:var(--text); font-family:'Jost',sans-serif; font-weight:300; line-height:1.65; overflow-x:hidden; }
+
+  /* HERO */
+  .hero { min-height:100vh; background:var(--deep); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden; padding:4rem 2rem; }
+  .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 20% 80%,rgba(168,78,32,.22) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 80% 20%,rgba(24,40,90,.3) 0%,transparent 60%); }
+  .hero-ornament { font-family:'Cormorant Garamond',serif; font-size:1rem; letter-spacing:.4em; color:var(--pale-gold); text-transform:uppercase; margin-bottom:2rem; opacity:0; animation:fadeUp 1s ease .2s forwards; position:relative; }
+  .hero h1 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(4rem,9vw,9rem); line-height:.9; color:#f5f0e8; letter-spacing:-.02em; opacity:0; animation:fadeUp 1s ease .4s forwards; position:relative; }
+  .hero h1 em { font-style:italic; color:var(--pale-gold); }
+  .hero-divider { width:60px; height:1px; background:var(--pale-gold); margin:2.5rem auto; opacity:0; animation:fadeUp 1s ease .6s forwards; position:relative; }
+  .hero-sub { font-size:1rem; letter-spacing:.3em; text-transform:uppercase; color:#887a6a; opacity:0; animation:fadeUp 1s ease .8s forwards; position:relative; }
+  .hero-dates { margin-top:1.5rem; font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-style:italic; color:rgba(245,240,232,.6); opacity:0; animation:fadeUp 1s ease 1s forwards; position:relative; }
+  .scroll-cue { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.5rem; opacity:0; animation:fadeUp 1s ease 1.5s forwards; }
+  .scroll-cue span { font-size:.8rem; letter-spacing:.3em; text-transform:uppercase; color:#887a6a; }
+  .scroll-line { width:1px; height:40px; background:linear-gradient(to bottom,var(--pale-gold),transparent); animation:pulse 2s ease infinite; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+  /* NAV */
+  .trip-nav { position:sticky; top:0; z-index:100; background:var(--deep); border-bottom:1px solid rgba(201,180,94,.22); display:flex; align-items:center; justify-content:center; overflow-x:auto; scrollbar-width:none; }
+  .trip-nav::-webkit-scrollbar { display:none; }
+  .nav-btn { flex-shrink:0; padding:1.1rem 1.4rem; background:none; border:none; cursor:pointer; font-family:'Jost',sans-serif; font-size:.78rem; font-weight:400; letter-spacing:.2em; text-transform:uppercase; color:#887a6a; border-bottom:2px solid transparent; transition:all .3s; white-space:nowrap; }
+  .nav-btn:hover,.nav-btn.active { color:#f5f0e8; border-bottom-color:var(--pale-gold); }
+
+  /* OVERVIEW */
+  .overview-strip { background:var(--deep); padding:3rem 2rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:2rem; border-bottom:1px solid rgba(201,180,94,.12); }
+  .overview-item { text-align:center; }
+  .overview-item .label { font-size:.72rem; letter-spacing:.3em; text-transform:uppercase; color:#887a6a; margin-bottom:.5rem; }
+  .overview-item .value { font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--pale-gold); font-style:italic; }
+
+  /* TODAY BANNER */
+  .today-banner { background:linear-gradient(135deg,rgba(122,96,16,.12),rgba(168,78,32,.08)); border:1px solid rgba(201,180,94,.3); border-radius:2px; padding:1rem 1.5rem; margin:2rem auto; max-width:900px; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+  .today-banner .today-text { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-style:italic; color:var(--text-light); }
+  .today-banner .today-text strong { color:var(--gold); font-style:normal; font-weight:600; }
+  .jump-btn { background:var(--gold); color:#fff; border:none; padding:.45rem 1.1rem; border-radius:2px; font-family:'Jost',sans-serif; font-size:.82rem; font-weight:400; cursor:pointer; white-space:nowrap; text-decoration:none; display:inline-block; transition:background .2s; }
+  .jump-btn:hover { background:var(--terracotta); }
+
+  /* CHAPTER */
+  .chapter { padding:5rem 2rem 2rem; max-width:900px; margin:0 auto; }
+  .chapter-header { display:flex; align-items:flex-end; gap:2rem; margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid rgba(62,52,40,.2); }
+  .chapter-num { font-family:'Cormorant Garamond',serif; font-size:5rem; font-weight:300; line-height:1; color:rgba(122,96,16,.15); flex-shrink:0; }
+  .chapter-tag { font-size:.78rem; letter-spacing:.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:.5rem; font-weight:400; }
+  .chapter-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.6rem,5vw,4.2rem); font-weight:300; line-height:1.05; color:var(--text); }
+  .chapter-sub { margin-top:.6rem; font-size:.95rem; color:var(--text-light); }
+  .chapter-intro { font-family:'Cormorant Garamond',serif; font-size:1.45rem; font-style:italic; line-height:1.75; color:var(--text-light); margin-bottom:2rem; padding-left:1.5rem; border-left:2px solid var(--gold); }
+
+  /* ROUTE STRATEGY */
+  .route-box { background:rgba(26,42,82,.05); border:1px solid rgba(26,42,82,.2); border-radius:2px; padding:1.3rem 1.6rem; margin-bottom:2.5rem; }
+  .route-box h4 { font-size:.72rem; letter-spacing:.3em; text-transform:uppercase; color:var(--paris-blue); margin-bottom:.9rem; font-weight:500; }
+  .route-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .route-col h5 { font-size:.82rem; font-weight:500; color:var(--paris-blue); margin-bottom:.4rem; }
+  .route-col ul { list-style:none; }
+  .route-col ul li { font-size:.9rem; color:var(--text-light); padding:.15rem 0; }
+  .route-col ul li::before { content:'✓ '; color:var(--booked); }
+  .route-note { margin-top:.9rem; font-size:.88rem; color:var(--stone); font-style:italic; }
+
+  /* HOTEL CARD */
+  .hotel-card { background:var(--warm-white); border:1px solid rgba(62,52,40,.18); border-radius:2px; padding:1.6rem 2rem; margin-bottom:2.5rem; display:flex; gap:2rem; align-items:flex-start; }
+  .hotel-icon { font-size:1.8rem; flex-shrink:0; margin-top:.15rem; }
+  .hotel-info h4 { font-family:'Cormorant Garamond',serif; font-size:1.55rem; font-weight:400; margin-bottom:.2rem; color:var(--text); }
+  .hotel-info .hotel-type { font-size:.75rem; letter-spacing:.25em; text-transform:uppercase; color:var(--terracotta); margin-bottom:.4rem; font-weight:400; }
+  .hotel-rating { display:flex; align-items:center; gap:.35rem; font-size:.88rem; font-weight:500; color:#1a6b3a; margin-bottom:.5rem; }
+  .hotel-rating .g-star { color:#e8a020; font-size:1rem; }
+  .hotel-info p { font-size:.95rem; color:var(--text-light); line-height:1.6; }
+  .hotel-badge { margin-left:auto; text-align:right; flex-shrink:0; }
+  .hotel-badge .nights { font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-style:italic; color:var(--gold); line-height:1; }
+  .hotel-badge .nights-label { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--stone); }
+
+  /* NEXT STOP */
+  .dist-bar { display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; margin-top:.6rem; }
+  .dist-chip { display:inline-flex; align-items:center; gap:.3rem; font-size:.85rem; color:var(--stone); background:rgba(62,52,40,.07); padding:.28rem .65rem; border-radius:2px; }
+  a.maps-btn { display:inline-flex; align-items:center; gap:.35rem; font-size:.85rem; font-weight:400; font-family:'Jost',sans-serif; color:#1a5fa8; text-decoration:none; background:rgba(26,95,168,.08); padding:.28rem .7rem; border-radius:2px; transition:background .2s; }
+  a.maps-btn:hover { background:rgba(26,95,168,.16); }
+
+  /* DAY CARDS */
+  .days-grid { display:flex; flex-direction:column; gap:1.5rem; }
+  details.day-card { background:var(--warm-white); border:1px solid rgba(62,52,40,.16); border-radius:2px; overflow:hidden; transition:box-shadow .3s; }
+  details.day-card:hover { box-shadow:0 4px 28px rgba(26,20,16,.09); }
+  details.day-card > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:1.5rem; padding:1.4rem 2rem; border-bottom:1px solid transparent; transition:border-color .3s; user-select:none; }
+  details.day-card > summary::-webkit-details-marker { display:none; }
+  details.day-card > summary::marker { display:none; }
+  details.day-card[open] > summary { border-bottom-color:rgba(62,52,40,.14); }
+  details.day-card[open] .day-toggle { transform:rotate(180deg); }
+  .day-number { font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:300; color:var(--pale-gold); line-height:1; flex-shrink:0; min-width:3rem; }
+  .day-date { flex:1; }
+  .day-date .weekday { font-size:.75rem; letter-spacing:.28em; text-transform:uppercase; color:var(--terracotta); margin-bottom:.15rem; font-weight:400; }
+  .day-date .full-date { font-family:'Cormorant Garamond',serif; font-size:1.45rem; color:var(--text); }
+  .day-theme { font-size:.88rem; color:var(--stone); text-align:right; flex-shrink:0; max-width:200px; font-style:italic; line-height:1.4; }
+  .day-toggle { color:var(--gold); font-size:1.1rem; transition:transform .3s; flex-shrink:0; }
+  .day-content { padding:2rem 2.2rem 2.2rem; }
+
+  /* TIME BLOCKS */
+  .time-block { display:flex; gap:1.6rem; margin-bottom:1.8rem; padding-bottom:1.8rem; border-bottom:1px solid rgba(62,52,40,.1); }
+  .time-block:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+  .time-label { flex-shrink:0; width:76px; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; padding-top:.25rem; font-weight:500; color:var(--gold); }
+  .time-label.aperitivo { color:var(--aperitivo); }
+  .time-label.sight { color:var(--sight); }
+  .time-label.lunch-lbl { color:var(--lunch-color); }
+  .time-details h5 { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:400; margin-bottom:.4rem; color:var(--text); }
+  .time-details p { font-size:1rem; color:var(--text-light); line-height:1.7; }
+
+  /* TAGS */
+  .booked { display:inline-flex; align-items:center; flex-wrap:wrap; gap:.4rem; margin-top:.65rem; font-size:.88rem; color:var(--booked); background:rgba(30,84,50,.08); padding:.35rem .75rem; border-radius:2px; font-weight:400; }
+  .tip { display:inline-block; margin-top:.6rem; font-size:.88rem; color:var(--terracotta); background:rgba(168,78,32,.07); padding:.3rem .75rem; border-radius:2px; font-style:italic; }
+  .g-rating { display:inline-flex; align-items:center; gap:.3rem; font-size:.85rem; font-weight:500; color:#1a6b3a; background:rgba(26,107,58,.09); padding:.18rem .55rem; border-radius:2px; vertical-align:middle; font-family:'Jost',sans-serif; font-style:normal; }
+  .g-star { color:#e8a020; }
+  .aperitivo-tag { display:inline-flex; align-items:center; gap:.3rem; font-size:.82rem; color:var(--aperitivo); background:rgba(90,45,130,.07); padding:.2rem .55rem; border-radius:2px; font-weight:400; }
+  .sight-tag { display:inline-flex; align-items:center; gap:.3rem; font-size:.82rem; color:var(--sight); background:rgba(26,74,106,.07); padding:.2rem .55rem; border-radius:2px; font-weight:400; }
+
+  /* RIDE ADVICE */
+  .ride-advice { display:flex; align-items:flex-start; gap:.5rem; margin-top:.55rem; padding:.55rem .8rem; background:rgba(26,42,82,.06); border-left:3px solid rgba(26,42,82,.3); border-radius:0 2px 2px 0; font-size:.92rem; color:var(--text-light); line-height:1.55; }
+  .ride-advice strong { color:var(--paris-blue); font-weight:500; }
+  .app-box { background:rgba(26,42,82,.05); border:1px solid rgba(26,42,82,.18); border-radius:2px; padding:1rem 1.3rem; margin-bottom:1.2rem; font-size:.92rem; color:var(--text-light); line-height:1.6; }
+  .app-box strong { color:var(--paris-blue); font-weight:500; }
+  .app-box .app-title { font-size:.72rem; letter-spacing:.25em; text-transform:uppercase; color:var(--paris-blue); font-weight:500; margin-bottom:.5rem; display:block; }
+
+  /* TIPS BOX */
+  .tips-box { background:rgba(122,96,16,.05); border:1px solid rgba(122,96,16,.2); border-radius:2px; padding:1.7rem; margin-bottom:2.5rem; }
+  .tips-box h4 { font-size:.78rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin-bottom:1.1rem; font-weight:500; }
+  .tips-list { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
+  .tips-list li { font-size:1rem; color:var(--text-light); padding-left:1.2rem; position:relative; line-height:1.55; }
+  .tips-list li::before { content:'—'; position:absolute; left:0; color:var(--gold); }
+
+  /* DIVIDER */
+  .section-divider { text-align:center; padding:4rem 2rem; position:relative; }
+  .section-divider::before { content:''; position:absolute; top:50%; left:5%; right:5%; height:1px; background:rgba(62,52,40,.18); }
+  .section-divider span { position:relative; background:var(--cream); padding:0 1.5rem; font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-style:italic; color:var(--stone); }
+
+  .paris-theme .chapter-tag { color:var(--paris-blue); }
+  .paris-theme .chapter-num { color:rgba(24,40,90,.15); }
+  .anniv-note { background:rgba(122,96,16,.07); border:1px solid rgba(122,96,16,.25); border-radius:2px; padding:1rem 1.5rem; margin-bottom:1.8rem; font-size:1rem; color:var(--gold); font-style:italic; text-align:center; }
+
+  footer { background:var(--deep); text-align:center; padding:3rem 2rem; margin-top:5rem; }
+  footer p { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-style:italic; color:#887a6a; }
+  footer .conf { margin-top:1rem; font-size:.75rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(136,122,106,.45); font-family:'Jost',sans-serif; }
+
+  @media print {
+    details.day-card { display:block !important; }
+    details.day-card > summary { border-bottom-color:rgba(62,52,40,.14) !important; cursor:default; }
+    details.day-card .day-content { display:block !important; }
+    .day-toggle,.trip-nav,.scroll-cue,.today-banner { display:none; }
+    .hero { min-height:auto; padding:2rem; }
+    a.maps-btn { color:#1a5fa8 !important; text-decoration:underline; }
+  }
+  @media(max-width:600px) {
+    html { font-size:17px; }
+    .hotel-card { flex-direction:column; gap:1rem; }
+    .hotel-badge { text-align:left; margin-left:0; }
+    .day-theme { display:none; }
+    .overview-strip { grid-template-columns:repeat(2,1fr); }
+    .route-grid { grid-template-columns:1fr; }
+    .time-label { width:58px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <p class="hero-ornament">Cook &nbsp;·&nbsp; June 2026</p>
+  <h1><em>Puglia</em><br>&amp; Paris</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">A Journey Through Southern Italy &amp; the City of Light</p>
+  <p class="hero-dates">June 1 – June 24, 2026</p>
+  <div class="scroll-cue"><div class="scroll-line"></div><span>Explore</span></div>
+</section>
+
+<nav class="trip-nav">
+  <button class="nav-btn active" onclick="scrollToSection('paris1',this)">Paris I</button>
+  <button class="nav-btn" onclick="scrollToSection('matera',this)">Matera</button>
+  <button class="nav-btn" onclick="scrollToSection('ostuni',this)">Ostuni</button>
+  <button class="nav-btn" onclick="scrollToSection('sanfoca',this)">San Foca</button>
+  <button class="nav-btn" onclick="scrollToSection('torrecanne',this)">Torre Canne</button>
+  <button class="nav-btn" onclick="scrollToSection('bari',this)">Bari</button>
+  <button class="nav-btn" onclick="scrollToSection('paris2',this)">Paris II</button>
+</nav>
+
+<div class="overview-strip">
+  <div class="overview-item"><div class="label">Duration</div><div class="value">24 nights</div></div>
+  <div class="overview-item"><div class="label">Destinations</div><div class="value">6 stops</div></div>
+  <div class="overview-item"><div class="label">Car Rental</div><div class="value">Jun 3–21</div></div>
+  <div class="overview-item"><div class="label">Consultant</div><div class="value">Jan Hammond</div></div>
+</div>
+
+<!-- TODAY BANNER — filled by JS -->
+<div class="today-banner" id="todayBanner" style="display:none">
+  <span class="today-text" id="todayText"></span>
+  <a class="jump-btn" id="todayJump" href="#">Jump to Today</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PARIS I -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="paris1">
+<div class="chapter paris-theme">
+  <div class="chapter-header">
+    <div class="chapter-num">I</div>
+    <div class="chapter-meta">
+      <div class="chapter-tag">June 1 – 3 &nbsp;·&nbsp; 2 Nights</div>
+      <h2 class="chapter-title">Paris,<br><em>Arrived</em></h2>
+      <p class="chapter-sub">Hotel Mayfair Paris · Classic Queen · No Breakfast · 1er Arrondissement</p>
+    </div>
+  </div>
+  <div class="hotel-card">
+    <div class="hotel-icon">🏨</div>
+    <div class="hotel-info">
+      <div class="hotel-type">Hotel Mayfair Paris</div>
+      <h4>3 Rue Rouget de L'Isle · Paris 75001</h4>
+      <div class="hotel-rating"><span class="g-star">★</span> 4.6 <span style="color:var(--stone);font-weight:300;font-size:.85rem">(893 Google reviews)</span></div>
+      <p>Classic Queen. ~$556/night, pay at hotel, no breakfast. Conf: 26998SF009177. Cancel 1 day prior.</p>
+    </div>
+    <div class="hotel-badge"><div class="nights">2</div><div class="nights-label">Nights</div></div>
+  </div>
+  <div class="app-box"><span class="app-title">🇫🇷 Getting Around Paris</span><strong>Uber</strong> works exactly as at home. <strong>G7</strong> (+33 1 47 39 47 39) and <strong>Bolt</strong> are strong backups. Walk during the day; Uber for evenings after wine. CDG departure day: Uber recommended (~€55–70) over RER with luggage.</div>
+  <div class="days-grid">
+
+    <details class="day-card" open id="day-jun01">
+      <summary class="day-header">
+        <div class="day-number">1</div>
+        <div class="day-date"><div class="weekday">Monday</div><div class="full-date">June 1 — Arrival</div></div>
+        <div class="day-theme">Saint-Germain · Aux Prés dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-details"><h5>Land CDG · Check in</h5><p>Flight arrives ~11:30am. RER B to Châtelet (~45 min), walk or taxi to Rue Rouget de L'Isle. The Palais Royal garden and Galerie Vivienne are two minutes away for a gentle first stroll.</p></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Sights</div>
+          <div class="time-details"><h5>Palais Royal &amp; Galerie Vivienne</h5><p>2 min from hotel. Free, quiet, lovely in afternoon light. Duck into Galerie Vivienne — one of Paris's most beautiful 19th-century covered arcades.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 2 min walk</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Mayfair+Paris,+3+Rue+Rouget+de+Lisle,+Paris&destination=Palais+Royal,+Paris&travelmode=walking" target="_blank">📍 Walk directions</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:00 pm</div>
+          <div class="time-details"><h5>Dinner — Aux Prés (Cyril Lignac)</h5><p>27 Rue du Dragon, 6th arr. Relaxed Saint-Germain bistro — produce-driven, beautiful room, excellent wine list.</p>
+          <div class="booked">✓ Reserved · 7:00 pm · Cancel 6 hrs prior · Amex <span class="g-rating"><span class="g-star">★</span> 4.2 (1,822)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 22 min walk · or Métro 4 → Saint-Sulpice (15 min)</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Mayfair+Paris,+3+Rue+Rouget+de+Lisle,+Paris&destination=Aux+Pres,+27+Rue+du+Dragon,+Paris&travelmode=walking" target="_blank">📍 Directions</a></div>
+          <div class="ride-advice"><span>🚕</span><span><strong>Uber recommended for dinner:</strong> ~5 min, ~€10–12. Save the walk for daytime.</span></div></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="day-card" open id="day-jun02">
+      <summary class="day-header">
+        <div class="day-number">2</div>
+        <div class="day-date"><div class="weekday">Tuesday</div><div class="full-date">June 2 — Full Day</div></div>
+        <div class="day-theme">La Fontaine de Mars lunch · Marais · Nessia dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">Morning</div>
+          <div class="time-details"><h5>7th arrondissement walk</h5><p>Coffee near the hotel, then Métro 1 → Concorde, then 12 → Assemblée Nationale. Walk Rue de Varenne, Rue de Grenelle toward the Musée Rodin garden.</p>
+          <div class="dist-bar"><span class="dist-chip">🚇 Métro 1 → Concorde, then 12 → Assemblée Nationale (~10 min)</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Mayfair+Paris,+3+Rue+Rouget+de+Lisle,+Paris&destination=Musee+Rodin,+Paris&travelmode=transit" target="_blank">📍 Transit directions</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label lunch-lbl">12:15 pm</div>
+          <div class="time-details"><h5>Lunch — La Fontaine de Mars</h5><p>129 Rue Saint-Dominique, 7th arr. Red-checked tablecloths, cassoulet, duck confit, wine from the Southwest. Your one reserved midday meal of the entire trip.</p>
+          <div class="booked">✓ Reserved · 12:15 pm <span class="g-rating"><span class="g-star">★</span> 4.4 (2,472)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 8 min walk from Musée Rodin</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Musee+Rodin,+Paris&destination=La+Fontaine+de+Mars,+129+Rue+Saint-Dominique,+Paris&travelmode=walking" target="_blank">📍 Walk directions</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Afternoon</div>
+          <div class="time-details"><h5>Le Marais wander</h5><p>Métro 8 to Bonne Nouvelle, then walk into the Marais. Marché des Enfants Rouges, Rue de Bretagne galleries, design shops on Rue Charlot. Place des Vosges is 10 min walk.</p>
+          <div class="dist-bar"><span class="dist-chip">🚇 Métro 8 → Bonne Nouvelle</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=La+Fontaine+de+Mars,+Paris&destination=Marche+des+Enfants+Rouges,+Paris&travelmode=transit" target="_blank">📍 Transit to Marais</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Nessia, Le Marais</h5><p>6 Rue Charles-François Dupuis, 75003. Modern Israeli-influenced cooking — mezze, grilled meats, Middle Eastern wine list.</p>
+          <div class="booked">✓ Reserved · 7:30 pm · 6 Rue Charles-François Dupuis <span class="g-rating"><span class="g-star">★</span> 4.7 (1,293)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 10 min walk from Place des Vosges</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Place+des+Vosges,+Paris&destination=Nessia+Marais,+6+Rue+Charles-Francois+Dupuis,+Paris&travelmode=walking" target="_blank">📍 Walk directions</a></div></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="day-card" open id="day-jun03">
+      <summary class="day-header">
+        <div class="day-number">3</div>
+        <div class="day-date"><div class="weekday">Wednesday</div><div class="full-date">June 3 — Fly to Bari</div></div>
+        <div class="day-theme">Orly 9:05am → Bari · Rental car · Tierra dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label">7:00 am</div>
+          <div class="time-details"><h5>Leave hotel · Orly Airport</h5><p>Transavia TO3880 departs 9:05am. OrlyBus ~40 min from Denfert-Rochereau.</p>
+          <div class="ride-advice"><span>🚕</span><span><strong>Uber to Orly strongly recommended</strong> with luggage — ~€35–45, ~30 min, much easier than the bus.</span></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">11:00 am</div>
+          <div class="time-details"><h5>Land Bari · Avis pickup · Drive to Matera</h5><p>Avis Conf 44631977US5 — paid in full, zero deductible. Drive ~65km to Matera, ~1 hour via SS96.</p>
+          <div class="booked">✓ Avis confirmed · Paid in full · Includes insurance</div>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~65 km · ~1 hr</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Bari+Airport,+Bari,+Italy&destination=Eurostars+Matera+La+Suite,+Via+Lucana+137,+Matera&travelmode=driving" target="_blank">📍 Drive to Matera</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Tierra Osteria Contemporanea</h5><p>Vicolo Lombardi 53. Contemporary Lucanian cuisine — arrival-night introduction to the region.</p>
+          <div class="booked">✓ Reserved · 7:30 pm local <span class="g-rating"><span class="g-star">★</span> 4.8 (618)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 3 min walk from Eurostars</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Eurostars+Matera+La+Suite,+Via+Lucana+137,+Matera&destination=Tierra+Osteria+Contemporanea,+Vicolo+Lombardi+53,+Matera&travelmode=walking" target="_blank">📍 Walk directions</a></div></div>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</div>
+</div>
+
+<div class="section-divider"><span>Arriving in the Ancient South</span></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- MATERA -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="matera">
+<div class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">II</div>
+    <div class="chapter-meta">
+      <div class="chapter-tag">June 3 – 6 &nbsp;·&nbsp; 3 Nights</div>
+      <h2 class="chapter-title">Matera,<br><em>The Ancient City</em></h2>
+      <p class="chapter-sub">Eurostars Matera La Suite · Suite Deluxe · Via Lucana 137 · Breakfast included</p>
+    </div>
+  </div>
+  <div class="hotel-card">
+    <div class="hotel-icon">🏛️</div>
+    <div class="hotel-info">
+      <div class="hotel-type">Eurostars Matera La Suite</div>
+      <h4>Via Lucana 137 · Matera 75100</h4>
+      <div class="hotel-rating"><span class="g-star">★</span> 4.6 <span style="color:var(--stone);font-weight:300;font-size:.85rem">(262 reviews)</span></div>
+      <p>Suite Deluxe. ~$395/night with breakfast. Cancel 2 days prior. Conf: 52116790.</p>
+      <div class="dist-bar" style="margin-top:.6rem"><span class="dist-chip">🚗 Next stop: Ostuni A Mare · ~112 km · ~1h 25min (via Alberobello + Locorotondo)</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Eurostars+Matera+La+Suite,+Via+Lucana+137,+Matera&destination=Ostuni+a+Mare,+Rosa+Marina,+Ostuni&travelmode=driving" target="_blank">📍 Drive to Ostuni</a></div>
+    </div>
+    <div class="hotel-badge"><div class="nights">3</div><div class="nights-label">Nights</div></div>
+  </div>
+  <div class="app-box"><span class="app-title">🚕 Getting Around Matera</span><strong>Leave the car at the hotel every evening</strong> — all three restaurants are under 6 min walk. <strong>No ride apps operate in Matera.</strong> For the Belvedere viewpoint, ask hotel reception to call a local radio taxi (~€8–10). The ZTL zone covers most of the centro storico.</div>
+  <div class="tips-box">
+    <h4>Matera Essentials</h4>
+    <ul class="tips-list">
+      <li>Park the car — the center is fully walkable, cars cannot enter the Sassi.</li>
+      <li>The Sassi are best at golden hour (7–8pm) and dawn — dramatically lit and very quiet.</li>
+      <li>Wear proper shoes — the stone streets are steep and uneven throughout.</li>
+      <li>Local DOP specialties to try: crapiata (ancient grain soup), cruschi peppers, Matera bread.</li>
+      <li>Primitivo is the local wine — earthy, powerful, excellent value.</li>
+    </ul>
+  </div>
+  <div class="days-grid">
+
+    <!-- JUNE 3 — ARRIVAL -->
+    <details class="day-card" open id="day-jun03">
+      <summary class="day-header">
+        <div class="day-number">3</div>
+        <div class="day-date"><div class="weekday">Wednesday</div><div class="full-date">June 3 — Arrival Evening</div></div>
+        <div class="day-theme">Bari pickup · drive to Matera · Tierra dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label">11:00 am</div>
+          <div class="time-details"><h5>Land Bari · Avis pickup · Drive to Matera</h5>
+          <p>Avis Conf 44631977US5 — paid in full, zero deductible insurance. Drive ~65km southwest, about 1 hour via SS96. The approach across the Murge plateau is your first taste of the deep south.</p>
+          <div class="booked">✓ Avis confirmed · Paid in full · Includes insurance</div>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~65 km · ~1 hr via SS96</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Bari+Airport,+Bari,+Italy&destination=Eurostars+Matera+La+Suite,+Via+Lucana+137,+Matera&travelmode=driving" target="_blank">📍 Drive to Matera</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Sunset</div>
+          <div class="time-details"><h5>Belvedere di Murgia Timone — first Sassi view</h5>
+          <p>After checking in, drive or walk to the Belvedere across the ravine. The panoramic view of the Sassi at dusk is the quintessential Matera moment — take it in slowly.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 8 min drive · or 🚶 40 min walk</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Eurostars+Matera+La+Suite,+Via+Lucana+137,+Matera&destination=Belvedere+di+Murgia+Timone,+Matera&travelmode=driving" target="_blank">📍 Directions to Belvedere</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Tierra Osteria Contemporanea</h5>
+          <p>Vicolo Lombardi 53. Contemporary Lucanian cuisine — a well-regarded arrival-night introduction to the region's flavors.</p>
+          <div class="booked">✓ Reserved · 7:30 pm local <span class="g-rating"><span class="g-star">★</span> 4.8 (618)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 3 min walk from Eurostars</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Eurostars+Matera+La+Suite,+Via+Lucana+137,+Matera&destination=Tierra+Osteria+Contemporanea,+Vicolo+Lombardi+53,+Matera&travelmode=walking" target="_blank">📍 Walk directions</a></div></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- JUNE 4 — SLOW CULTURE DAY (was PDF June 5) -->
+    <details class="day-card" open id="day-jun04">
+      <summary class="day-header">
+        <div class="day-number">4</div>
+        <div class="day-date"><div class="weekday">Thursday</div><div class="full-date">June 4 — Slow Culture Day</div></div>
+        <div class="day-theme">Casa Noha · Sasso Caveoso · Zipa aperitivo · La Lopa dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">9:15 am</div>
+          <div class="time-details"><h5>Casa Noha — book ahead</h5>
+          <p>Recinto Cavone 9. A multimedia experience in a historic cave house — the best introduction to the Sassi's 9,000-year history. Opens 9:15am, allow 45 min.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 8 min walk from Eurostars</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Eurostars+Matera+La+Suite,+Via+Lucana+137,+Matera&destination=Casa+Noha,+Recinto+Cavone+9,+Matera&travelmode=walking" target="_blank">📍 Walk to Casa Noha</a></div>
+          <span class="sight-tag">📖 Book ahead · opens 9:15am</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">10:00 am</div>
+          <div class="time-details"><h5>Santa Maria de Idris + Sasso Caveoso caves</h5>
+          <p>Via Madonna dell'Idris — opens 9:30am. Rock-carved church with extraordinary frescoed interior. Then wander the Sasso Caveoso — the older, quieter Sassi district with the most authentic cave dwellings. Also visit Santa Lucia alle Malve. Allow 2–3 hours to wander without an agenda.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 4 min from Casa Noha</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Casa+Noha,+Matera&destination=Santa+Maria+de+Idris,+Matera&travelmode=walking" target="_blank">📍 Walk to Santa Maria de Idris</a></div>
+          <span class="sight-tag">🕍 Opens 9:30am · sunset views</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label lunch-lbl">Lunch</div>
+          <div class="time-details"><h5>Long lunch in the Sassi</h5>
+          <p>Find a trattoria in the Sasso Barisano for the essential local dishes: pasta with cruschi peppers (DOP specialty) and Matera bread tasting (DOP-certified loaves baked in wood-fired ovens). This is Lucanian food at its most authentic — allow a proper slow lunch.</p></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Afternoon</div>
+          <div class="time-details"><h5>MUSMA — contemporary sculpture in a cave palazzo</h5>
+          <p>Built inside a historic cave palazzo — genuinely surprising and worth 90 minutes. Then rest at the hotel before aperitivo.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 12 min walk from Sasso Caveoso</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Sasso+Caveoso,+Matera&destination=MUSMA+Museo+della+Scultura+Contemporanea,+Matera&travelmode=walking" target="_blank">📍 Walk to MUSMA</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label aperitivo">5:30 pm</div>
+          <div class="time-details"><h5>Aperitivo — Zipa Cafè</h5>
+          <p>Via Madonna dell'Idris 15. Rock-carved bar with extraordinary Sassi views — opens 5:30pm. Order a Primitivo or a spritz and watch the light turn golden over the ravine. One of the most memorable aperitivo settings in all of Puglia.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 2 min from Santa Maria de Idris</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Santa+Maria+de+Idris,+Matera&destination=Zipa+Cafe,+Via+Madonna+dell+Idris+15,+Matera&travelmode=walking" target="_blank">📍 Walk to Zipa Cafè</a></div>
+          <span class="aperitivo-tag">🍷 Opens 5:30pm <span class="g-star">★</span> 4.7</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — La Lopa</h5>
+          <p>Via Bruno Buozzi 13 — terrace with panoramic Sassi views. One of Matera's finest dinner spots. Order local pasta and anything with peperoni cruschi. Spectacular when the Sassi are lit below.</p>
+          <div class="booked">✓ Reserved · 7:30 pm · Via Bruno Buozzi 13 <span class="g-rating"><span class="g-star">★</span> 4.6 (1,621)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 6 min walk from Eurostars</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Eurostars+Matera+La+Suite,+Via+Lucana+137,+Matera&destination=La+Lopa,+Via+Bruno+Buozzi+13,+Matera&travelmode=walking" target="_blank">📍 Walk directions</a></div></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- JUNE 5 — TODAY: CAVES + SASSI (was PDF June 5, user confirmed today = this day) -->
+    <details class="day-card" open id="day-jun05">
+      <summary class="day-header">
+        <div class="day-number">5</div>
+        <div class="day-date"><div class="weekday">Friday</div><div class="full-date">June 5 — Cave Exploration Day</div></div>
+        <div class="day-theme">Sassi deep dive · Piazza Vittorio Veneto cisterns · Burro Salato dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">Morning</div>
+          <div class="time-details"><h5>Sasso Barisano deep exploration</h5>
+          <p>The other half of the Sassi — explore the Sasso Barisano's higher terraces and cliff-side churches. Walk the network of alleys without a fixed agenda. The medieval streets reward unhurried wandering far more than a timed itinerary.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 10 min walk from Eurostars</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Eurostars+Matera+La+Suite,+Via+Lucana+137,+Matera&destination=Sasso+Barisano,+Matera&travelmode=walking" target="_blank">📍 Walk to Sasso Barisano</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Midday</div>
+          <div class="time-details"><h5>Piazza Vittorio Veneto — underground cisterns</h5>
+          <p>The main piazza sits atop a remarkable underground cistern and church system — visitable via a tunnel entrance in the square. One of Matera's most surprising hidden layers. Also: the views from the piazza terrace over the Sassi are among the best in the city.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 5 min from Sasso Barisano</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Sasso+Barisano,+Matera&destination=Piazza+Vittorio+Veneto,+Matera&travelmode=walking" target="_blank">📍 Walk to Piazza Vittorio Veneto</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label lunch-lbl">Lunch</div>
+          <div class="time-details"><h5>Lunch in the Sassi</h5>
+          <p>Find a spot in or near the Sasso Barisano. Today's focus is the bread — Matera's DOP-certified wood-fired loaves are extraordinary and worth seeking out at a restaurant that makes its own.</p></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Afternoon</div>
+          <div class="time-details"><h5>Final afternoon wander + pack for tomorrow</h5>
+          <p>Tomorrow is the drive day (Matera → Alberobello → Locorotondo → Ostuni). Use this afternoon to soak up the last hours in the ancient city, pack up, and be ready for a morning departure.</p></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Burro Salato Bistrot</h5>
+          <p>Via Rocco Scotellaro 7. French-Lucanian hybrid bistro — one of Matera's most inventive restaurants. Your last dinner in the ancient city before the drive south tomorrow.</p>
+          <div class="booked">✓ Reserved · 7:30 pm <span class="g-rating"><span class="g-star">★</span> 4.8 (777)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 2 min walk from Eurostars</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Eurostars+Matera+La+Suite,+Via+Lucana+137,+Matera&destination=Burro+Salato,+Via+Rocco+Scotellaro+7,+Matera&travelmode=walking" target="_blank">📍 Walk directions</a></div></div>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</div>
+</div>
+
+<div class="section-divider"><span>Down to the Adriatic</span></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- OSTUNI -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="ostuni">
+<div class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">III</div>
+    <div class="chapter-meta">
+      <div class="chapter-tag">June 6 – 10 &nbsp;·&nbsp; 4 Nights</div>
+      <h2 class="chapter-title">Ostuni,<br><em>The White City</em></h2>
+      <p class="chapter-sub">Ostuni A Mare · Jr Suite Prestige · Loc. Rosa Marina · Breakfast included</p>
+    </div>
+  </div>
+  <div class="hotel-card">
+    <div class="hotel-icon">🌊</div>
+    <div class="hotel-info">
+      <div class="hotel-type">Ostuni A Mare — Rosa Marina</div>
+      <h4>Loc. Rosa Marina · Ostuni 72017</h4>
+      <div class="hotel-rating"><span class="g-star">★</span> 4.2 <span style="color:var(--stone);font-weight:300;font-size:.85rem">(1,343 reviews)</span></div>
+      <p>Jr Suite Prestige. ~$516/night with breakfast. Cancel 3 days prior. Conf: 48435SF000047.</p>
+      <div class="dist-bar" style="margin-top:.6rem"><span class="dist-chip">🚗 Next: Posia Retreat, San Foca · ~115 km · ~1h 40min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Ostuni+a+Mare,+Rosa+Marina,+Ostuni&destination=Posia+Retreat+Spa,+Via+Lungomare+Matteotti+157,+San+Foca&travelmode=driving" target="_blank">📍 Drive to San Foca</a></div>
+    </div>
+    <div class="hotel-badge"><div class="nights">4</div><div class="nights-label">Nights</div></div>
+  </div>
+  <div class="app-box"><span class="app-title">🚕 Getting Around Ostuni</span><strong>No ride apps or public taxis in Rosa Marina.</strong> Only pre-booked private transfers (~€25/way to Ostuni). Recommend <strong>driving yourself</strong> (12 min, park at Piazzale Porta Nova) — it's easy and parking is free. Book hotel transfers in advance for any night you want to drink freely.</div>
+  <div class="route-box">
+    <h4>🗺 Route Strategy — Stay Geographically Aligned</h4>
+    <div class="route-grid">
+      <div class="route-col"><h5>✅ Do from Ostuni Base</h5><ul><li>Alberobello (drive day in)</li><li>Locorotondo (drive day in)</li><li>Monopoli</li><li>Polignano a Mare</li><li>Cisternino</li></ul></div>
+      <div class="route-col"><h5>✅ Do from Lecce Base</h5><ul><li>Lecce city</li><li>Otranto</li><li>Gallipoli</li><li>Baia dei Turchi</li><li>Torre dell'Orso</li></ul></div>
+    </div>
+    <p class="route-note">Staying geographically aligned saves 4–6 hours of backtracking and keeps daily driving under 45–60 min.</p>
+  </div>
+  <div class="days-grid">
+
+    <!-- JUNE 6 — DRIVE DAY: Matera → Alberobello → Locorotondo → Ostuni -->
+    <details class="day-card" open id="day-jun06">
+      <summary class="day-header">
+        <div class="day-number">6</div>
+        <div class="day-date"><div class="weekday">Saturday</div><div class="full-date">June 6 — Drive Day</div></div>
+        <div class="day-theme">Matera → Alberobello → Locorotondo → Ostuni</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-details"><h5>Depart Matera — sequence matters</h5>
+          <p>Leave early to hit Alberobello before the tourist buses. The drive takes you through the Murge plateau — dramatic open landscape before dropping into the trulli country.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 Matera → Alberobello ~1h 15min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Eurostars+Matera+La+Suite,+Via+Lucana+137,+Matera&destination=Alberobello,+Puglia,+Italy&travelmode=driving" target="_blank">📍 Drive to Alberobello</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Stop 1</div>
+          <div class="time-details"><h5>Alberobello — ~1h 30min</h5>
+          <p>UNESCO trulli — go early, it's tourist-heavy by noon. The <strong>Rione Aia Piccola</strong> quarter is far less commercialized than the main Rione Monti — gives a much better sense of how people actually lived here. Allow 90 min max then move on.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 Alberobello → Locorotondo ~15 min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Alberobello,+Puglia,+Italy&destination=Locorotondo,+Puglia,+Italy&travelmode=driving" target="_blank">📍 Drive to Locorotondo</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label lunch-lbl">Lunch</div>
+          <div class="time-details"><h5>Ombre e Fioi Wine Bar — Locorotondo</h5>
+          <p>Via Montanaro 2. The essential Valle d'Itria lunch — local white wines, orecchiette, burrata. Locorotondo is a gorgeous whitewashed hilltop village almost free of tourists and far more charming than Alberobello. Linger here.</p>
+          <span class="g-rating"><span class="g-star">★</span> 4.6</span>
+          <div class="dist-bar"><span class="dist-chip">🚗 Locorotondo → Ostuni ~40 min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Locorotondo,+Puglia,+Italy&destination=Ostuni+a+Mare,+Rosa+Marina,+Ostuni&travelmode=driving" target="_blank">📍 Drive to Ostuni</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Arrive</div>
+          <div class="time-details"><h5>Arrive Ostuni A Mare — golden hour</h5>
+          <p>Arrive Rosa Marina in the afternoon. Check in, get to the beach. Then drive up to Ostuni old town for sunset — the terraces and panoramic views over the Adriatic plain in evening light are extraordinary.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~9 km · ~12 min up to Ostuni town</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Ostuni+a+Mare,+Rosa+Marina,+Ostuni&destination=Ostuni+Old+Town,+Ostuni&travelmode=driving" target="_blank">📍 Drive up to Ostuni</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:00 pm</div>
+          <div class="time-details"><h5>Dinner — Il Posto Affianco</h5>
+          <p>Via Gaetano Tanzarella Vitale 34. Outdoor seating — a beloved local spot in Ostuni, great Primitivo.</p>
+          <div class="booked">✓ Reserved · 7:00 pm · Outside seating <span class="g-rating"><span class="g-star">★</span> 4.5 (2,759)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~9 km · ~12 min from Rosa Marina</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Ostuni+a+Mare,+Rosa+Marina,+Ostuni&destination=Il+Posto+Affianco,+Via+Tanzarella+Vitale,+Ostuni&travelmode=driving" target="_blank">📍 Drive to dinner</a></div></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- JUNE 7 — OSTUNI WHITE CITY + MASSERIA -->
+    <details class="day-card" open id="day-jun07">
+      <summary class="day-header">
+        <div class="day-number">7</div>
+        <div class="day-date"><div class="weekday">Sunday · Father's Day</div><div class="full-date">June 7 — White City + Countryside</div></div>
+        <div class="day-theme">Ostuni old town · olive oil masseria · Garbato aperitivo · Il Bistrot dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">Morning</div>
+          <div class="time-details"><h5>Ostuni centro storico — La Città Bianca</h5>
+          <p>Drive up and park at Piazzale Porta Nova. Walk the white-washed labyrinthine streets. The Cathedral's 15th-century rose window is beautiful, and the panoramic terraces give views all the way to the sea. Morning is best before the heat.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~9 km · ~12 min from Rosa Marina</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Ostuni+a+Mare,+Rosa+Marina,+Ostuni&destination=Ostuni+Cathedral,+Ostuni&travelmode=driving" target="_blank">📍 Drive to Ostuni</a></div>
+          <span class="sight-tag">🏛 Ostuni Cathedral + panoramic terraces</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label lunch-lbl">Afternoon</div>
+          <div class="time-details"><h5>Olive oil masseria visit — highly recommended, book ahead</h5>
+          <p>A working masseria near Ostuni for olive oil tasting with burrata and local wine in the olive grove. One of the most characteristically Pugliese experiences of the trip — the oil here is extraordinary. Ask the hotel to recommend and arrange.</p>
+          <span class="tip">📞 Ask Ostuni A Mare to arrange — book in advance</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label aperitivo">Pre-dinner</div>
+          <div class="time-details"><h5>Aperitivo — Garbato Wine Bar</h5>
+          <p>Via Giovanni Lanza 33. Expert-curated wines and charcuterie. One of the best wine bars in Ostuni — 1 min walk from Il Bistrot on the same street.</p>
+          <span class="aperitivo-tag">🍷 <span class="g-star">★</span> 4.9 · 1 min from Il Bistrot · Via Giovanni Lanza 33</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Il Bistrot, Ostuni Palace</h5>
+          <p>Corso Vittorio Emanuele II 218. Creative Italian cuisine on the main street of the old town.</p>
+          <div class="booked">✓ Reserved · 7:30 pm <span class="g-rating"><span class="g-star">★</span> 4.7 (87)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 3 min walk from Cathedral · park below and stay in old town</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Ostuni+Cathedral,+Ostuni&destination=Ristorante+Il+Bistrot,+Corso+Vittorio+Emanuele+218,+Ostuni&travelmode=walking" target="_blank">📍 Walk in old town</a></div></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- JUNE 8 — POLIGNANO + MONOPOLI COAST DAY -->
+    <details class="day-card" open id="day-jun08">
+      <summary class="day-header">
+        <div class="day-number">8</div>
+        <div class="day-date"><div class="weekday">Monday</div><div class="full-date">June 8 — Best Coast Day</div></div>
+        <div class="day-theme">Monopoli harbor · Polignano cliffs · Ramunno dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">Morning</div>
+          <div class="time-details"><h5>Monopoli — Porto Antico</h5>
+          <p>Drive 40 min north. Harbor walk and old town streets — a working fishing port with a beautiful castle right on the water and far fewer tourists than Polignano. Espresso, stroll, watch the boats.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 Ostuni → Monopoli ~40 min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Ostuni+a+Mare,+Rosa+Marina,+Ostuni&destination=Porto+Antico+di+Monopoli,+Monopoli,+Italy&travelmode=driving" target="_blank">📍 Drive to Monopoli</a></div>
+          <span class="sight-tag">⚓ Porto Antico di Monopoli <span class="g-star">★</span> 4.7</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label aperitivo">Aperitivo</div>
+          <div class="time-details"><h5>Tuttoapposto Winebar — Monopoli harbor</h5>
+          <p>Via Porto 26. Harbour-view bar — Apulian mojito, charcuterie, excellent Puglian wines. 1 min from Porto Antico.</p>
+          <span class="aperitivo-tag">🍷 <span class="g-star">★</span> 4.7 · Harbour-view · Via Porto 26</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label lunch-lbl">Lunch</div>
+          <div class="time-details"><h5>Seafood lunch — Monopoli harbor</h5>
+          <p>Raw crudo, fried anchovies, burrata on the harbor front. Find a restaurant along the waterfront — this is the Adriatic at its most direct and seasonal.</p></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Afternoon</div>
+          <div class="time-details"><h5>Polignano a Mare — cliffs, lookout + beach</h5>
+          <p>Drive 15 min from Monopoli. The cliff-top old town over the Adriatic is spectacular. Walk to <strong>Lama Monachile Lookout</strong> (best viewpoint, ★4.9), then down to <strong>Lama Monachile Beach</strong> (crystal-clear cliff swimming, ★4.7). Finish with gelato and drinks at <strong>La Casa del Mojito</strong> (Via Annunziata 19, ★4.7, 2 min from the lookout).</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 Monopoli → Polignano ~15 min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Monopoli,+Puglia,+Italy&destination=Lama+Monachile,+Polignano+a+Mare,+Italy&travelmode=driving" target="_blank">📍 Drive to Polignano</a></div>
+          <span class="sight-tag">🏖 Lama Monachile Lookout <span class="g-star">★</span> 4.9</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Ramunno Bistrot</h5>
+          <p>Via Giovanni Lanza 9, Ostuni. Seafood-forward — drive back from Polignano (~40 min) to Ostuni for dinner. Note: closed Tuesdays.</p>
+          <div class="booked">✓ Reserved · 7:30 pm <span class="g-rating"><span class="g-star">★</span> 4.7 (546)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚗 Polignano → Ostuni ~40 min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Polignano+a+Mare,+Italy&destination=Ramunno+Bistrot,+Via+Giovanni+Lanza+9,+Ostuni&travelmode=driving" target="_blank">📍 Drive to dinner</a></div></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- JUNE 9 — CISTERNINO / VALLE D'ITRIA -->
+    <details class="day-card" open id="day-jun09">
+      <summary class="day-header">
+        <div class="day-number">9</div>
+        <div class="day-date"><div class="weekday">Tuesday</div><div class="full-date">June 9 — Valle d'Itria Countryside</div></div>
+        <div class="day-theme">Cisternino · Al Vecchio Fornello · optional winery · Osteria Ricanatti dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">Morning</div>
+          <div class="time-details"><h5>Cisternino centro storico</h5>
+          <p>The best food town in the Valle d'Itria — a beautiful whitewashed hilltop village with almost no tourists. Trulli landscape drives through the countryside on the way. Walk the centro storico, browse the small shops.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~30 min from Rosa Marina</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Ostuni+a+Mare,+Rosa+Marina,+Ostuni&destination=Cisternino,+Puglia,+Italy&travelmode=driving" target="_blank">📍 Drive to Cisternino</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label lunch-lbl">Lunch</div>
+          <div class="time-details"><h5>Al Vecchio Fornello — Cisternino grill</h5>
+          <p>Via Basiliani 18. Point at your cut from the butcher counter and they grill it on an open fire. <strong>Bombette, agnello, involtini</strong> — one of the most memorable meals in Puglia. Arrives early, fills up fast.</p>
+          <span class="g-rating"><span class="g-star">★</span> 4.3</span>
+          <span class="tip">⚠️ Closed Monday &amp; Tuesday · Opens at lunch Sunday, dinner weekdays · Arrive early to queue</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Afternoon</div>
+          <div class="time-details"><h5>Optional: Martina Franca winery tasting</h5>
+          <p>Wineries around Martina Franca offer Primitivo and Verdeca tastings in beautiful countryside settings. Worth an hour if you have time before heading back for dinner.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~15 min from Cisternino</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Cisternino,+Puglia,+Italy&destination=Martina+Franca,+Puglia,+Italy&travelmode=driving" target="_blank">📍 Drive to Martina Franca</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Osteria Ricanatti</h5>
+          <p>Corso Camillo Benso Cavour 37, Ostuni. Intimate osteria — classic Pugliese cooking for the final Ostuni evening.</p>
+          <div class="booked">✓ Reserved · 7:30 pm <span class="g-rating"><span class="g-star">★</span> 4.7 (353)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~9 km · ~12 min from Rosa Marina</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Ostuni+a+Mare,+Rosa+Marina,+Ostuni&destination=Osteria+Ricanatti,+Corso+Cavour+37,+Ostuni&travelmode=driving" target="_blank">📍 Drive to dinner</a></div></div>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</div>
+</div>
+
+<div class="section-divider"><span>The Salento Coast</span></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SAN FOCA -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="sanfoca">
+<div class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">IV</div>
+    <div class="chapter-meta">
+      <div class="chapter-tag">June 10 – 14 &nbsp;·&nbsp; 4 Nights</div>
+      <h2 class="chapter-title">San Foca,<br><em>Deep Salento</em></h2>
+      <p class="chapter-sub">Posia Retreat &amp; Spa · Deluxe Sea View · Paid in Full · Breakfast included</p>
+    </div>
+  </div>
+  <div class="hotel-card">
+    <div class="hotel-icon">🌿</div>
+    <div class="hotel-info">
+      <div class="hotel-type">Posia Retreat &amp; Spa</div>
+      <h4>Via Lungomare Matteotti 157 · San Foca 73026</h4>
+      <div class="hotel-rating"><span class="g-star">★</span> 4.6 <span style="color:var(--stone);font-weight:300;font-size:.85rem">(404 reviews)</span></div>
+      <p>Deluxe Sea View. ~$638/night with breakfast. Paid in full. ~20 min from Lecce city center.</p>
+      <div class="dist-bar" style="margin-top:.6rem"><span class="dist-chip">🚗 Next: Canne Bianche · ~150 km · ~2h 00min (via Monopoli coast)</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Posia+Retreat+Spa,+Via+Lungomare+Matteotti+157,+San+Foca&destination=Canne+Bianche+Lifestyle+Hotel,+Via+Appia+32,+Torre+Canne&travelmode=driving" target="_blank">📍 Drive to Torre Canne</a></div>
+    </div>
+    <div class="hotel-badge"><div class="nights">4</div><div class="nights-label">Nights</div></div>
+  </div>
+  <div class="app-box"><span class="app-title">🚕 San Foca / Lecce Transport</span><strong>itTaxi app covers Lecce</strong> — download before arriving, pay by card. Great for returning from Lecce dinners (~€20–25 back to Posia). <strong>Uber does not operate here.</strong> Drive yourself to Masseria Caronte (~12 km). For Dedo and More in Lecce city, drive in and use itTaxi home after dinner. Parking in Lecce: Parcheggio Ferrari near the city walls.</div>
+  <div class="days-grid">
+
+    <!-- JUNE 10 — SETTLE INTO COASTAL BASE -->
+    <details class="day-card" open id="day-jun10">
+      <summary class="day-header">
+        <div class="day-number">10</div>
+        <div class="day-date"><div class="weekday">Wednesday</div><div class="full-date">June 10 — Settle into Coastal Base</div></div>
+        <div class="day-theme">Drive from Ostuni · easy evening · Masseria Caronte dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label">Drive</div>
+          <div class="time-details"><h5>Ostuni → San Foca — ~1h 40min</h5>
+          <p>~115km south along the Adriatic coast. Check in, sea view room, easy afternoon at the hotel's beach access. This is a settle-in day — coastal base for June 10–14.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~115 km · ~1h 40min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Ostuni+a+Mare,+Rosa+Marina,+Ostuni&destination=Posia+Retreat+Spa,+Via+Lungomare+Matteotti+157,+San+Foca&travelmode=driving" target="_blank">📍 Drive directions</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-details"><h5>San Foca coastline — easy first evening</h5>
+          <p>Aperitivo at the hotel or walk the San Foca lungomare. A gentle arrival evening before the more active days ahead.</p></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Masseria Caronte</h5>
+          <p>Via Lecce 137, Vernole. Fortified farmhouse in an ancient olive grove — farm-to-table cooking, wonderful first Salento evening.</p>
+          <div class="booked">✓ Reserved · 7:30 pm <span class="g-rating"><span class="g-star">★</span> 4.9 (335)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~12 km · ~15 min from Posia</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Posia+Retreat+Spa,+San+Foca,+Italy&destination=Masseria+Caronte,+Via+Lecce+137,+Vernole&travelmode=driving" target="_blank">📍 Drive directions</a></div></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- JUNE 11 — LECCE DAY -->
+    <details class="day-card" open id="day-jun11">
+      <summary class="day-header">
+        <div class="day-number">11</div>
+        <div class="day-date"><div class="weekday">Thursday</div><div class="full-date">June 11 — Lecce Day</div></div>
+        <div class="day-theme">Amphitheater → Duomo → Santa Croce · AlVentuno · Dedo dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label lunch-lbl">Morning</div>
+          <div class="time-details"><h5>Lecce street food</h5>
+          <p>Start with a <strong>pasticciotto</strong> (cream pastry — the Lecce signature, at any bar in town) and <strong>rustico leccese</strong> (flaky pastry with béchamel and tomato). These are the essential Lecce food experiences and are only found here.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~20 km · ~25 min from Posia to Lecce center</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Posia+Retreat+Spa,+San+Foca,+Italy&destination=Piazza+Sant+Oronzo,+Lecce,+Italy&travelmode=driving" target="_blank">📍 Drive to Lecce</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Sights</div>
+          <div class="time-details"><h5>Walking loop — ~25 min total</h5>
+          <p><strong>Roman Amphitheater</strong> (Piazza Sant'Oronzo, 2nd-century ruins, free) <span class="sight-tag">★ 4.6</span><br>
+          → <strong>Piazza del Duomo</strong> (Cathedral + Bell Tower, finest Baroque square in Puglia)<br>
+          → <strong>Basilica di Santa Croce</strong> (Via Umberto I 1, the Baroque masterpiece, €7) <span class="sight-tag">★ 4.7</span></p>
+          <div class="dist-bar"><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Piazza+Sant+Oronzo,+Lecce&destination=Basilica+di+Santa+Croce,+Lecce&travelmode=walking" target="_blank">📍 Walk: Amphitheater → Santa Croce</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label aperitivo">Aperitivo</div>
+          <div class="time-details"><h5>AlVentuno — Lecce's top cocktail bar</h5>
+          <p>Via G. Matteotti 21a. The best aperitivo in Lecce — excellent cocktails, open late, 3 min walk from the Roman Amphitheater.</p>
+          <span class="aperitivo-tag">🍸 <span class="g-star">★</span> 4.8 · Top cocktail bar · 3 min from Amphitheater</span>
+          <div class="dist-bar"><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Roman+Amphitheater,+Piazza+Sant+Oronzo,+Lecce&destination=AlVentuno,+Via+G.+Matteotti+21a,+Lecce&travelmode=walking" target="_blank">📍 Walk to AlVentuno</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Dedo Osteria</h5>
+          <p>Via Filippo Bacile 25. Creative Salentine cuisine — one of Lecce's best. Book ahead.</p>
+          <div class="booked">✓ Reserved · 7:30 pm <span class="g-rating"><span class="g-star">★</span> 4.8 (314)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 7 min walk from Amphitheater</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Roman+Amphitheater,+Piazza+Sant+Oronzo,+Lecce&destination=Dedo+Osteria,+Via+Filippo+Bacile+25,+Lecce&travelmode=walking" target="_blank">📍 Walk to Dedo</a></div>
+          <div class="ride-advice"><span>🚕</span><span>Drive to Lecce, park at Parcheggio Ferrari, enjoy dinner freely, then use <strong>itTaxi</strong> home to Posia (~€20–25).</span></div></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- JUNE 12 — RETREAT DAY -->
+    <details class="day-card" open id="day-jun12">
+      <summary class="day-header">
+        <div class="day-number">12</div>
+        <div class="day-date"><div class="weekday">Friday</div><div class="full-date">June 12 — Retreat Day</div></div>
+        <div class="day-theme">Full sea &amp; spa day · Aura hotel dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label">All Day</div>
+          <div class="time-details"><h5>Full resort day — sea, spa, pool</h5>
+          <p>No driving, no agenda. Morning in the sea, spa in the afternoon. The rocky coves north of San Foca are excellent for snorkeling in June. This is what Posia is for.</p></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Aura at the Hotel</h5>
+          <p>Posia's restaurant with sea views. A true no-car evening.</p>
+          <div class="booked">✓ Reserved · 7:30 pm · On-site at Posia <span class="g-rating"><span class="g-star">★</span> 4.6 (404)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 On-site · 1 min walk</span></div></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- JUNE 13 — SALENTO COAST + OTRANTO -->
+    <details class="day-card" open id="day-jun13">
+      <summary class="day-header">
+        <div class="day-number">13</div>
+        <div class="day-date"><div class="weekday">Saturday</div><div class="full-date">June 13 — Salento Coast Day</div></div>
+        <div class="day-theme">Otranto · coast swimming · drive back to Lecce · More Restaurant</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">Morning</div>
+          <div class="time-details"><h5>Otranto — sea walls + Cathedral</h5>
+          <p>Drive ~18km south (~25 min). Walk the <strong>Porta Alfonsina sea walls</strong> (★4.6) for the best view of the old town gate over the Adriatic. Then the <strong>Otranto Cathedral</strong> — the 12th-century mosaic floor covers the entire nave and is one of the great medieval artworks in Italy. Entry free.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~18 km · ~25 min south from Posia</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Posia+Retreat+Spa,+San+Foca,+Italy&destination=Otranto+Cathedral,+Otranto,+Italy&travelmode=driving" target="_blank">📍 Drive to Otranto</a></div>
+          <span class="sight-tag">🏰 Porta Alfonsina ★ 4.6 · Cathedral ★ 4.7 · free entry</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Afternoon</div>
+          <div class="time-details"><h5>Adriatic coast swimming stops</h5>
+          <p>The Salento Adriatic has the clearest water in Italy. Drive north from Otranto stopping at: <strong>Baia dei Turchi</strong> (natural beach, short pine-forest walk), <strong>Alimini</strong> lakes area, <strong>Torre dell'Orso</strong> (the Due Sorelle twin rock stacks — spectacular at sunset).</p>
+          <div class="dist-bar"><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Otranto,+Italy&destination=Baia+dei+Turchi,+Otranto,+Italy&travelmode=driving" target="_blank">📍 Otranto → Baia dei Turchi</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — More Restaurant, Lecce</h5>
+          <p>Via Don Luigi Sturzo 34. Seafood-focused. Drive back to Lecce for a final Salento dinner. Note: closed Tuesdays.</p>
+          <div class="booked">✓ Reserved · 7:30 pm <span class="g-rating"><span class="g-star">★</span> 4.8 (99)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 12 min walk from Piazza del Duomo</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Piazza+del+Duomo,+Lecce,+Italy&destination=More+Restaurant,+Via+Don+Luigi+Sturzo+34,+Lecce&travelmode=walking" target="_blank">📍 Walk in Lecce</a></div>
+          <div class="ride-advice"><span>🚕</span><span>Drive to Lecce, use <strong>itTaxi</strong> home (~€20–25). Worth it for a final Salento night out.</span></div></div>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</div>
+</div>
+
+<div class="section-divider"><span>The Valle d'Itria</span></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TORRE CANNE -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="torrecanne">
+<div class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">V</div>
+    <div class="chapter-meta">
+      <div class="chapter-tag">June 14 – 18 &nbsp;·&nbsp; 4 Nights</div>
+      <h2 class="chapter-title">Torre Canne,<br><em>Fasano &amp; the Valley</em></h2>
+      <p class="chapter-sub">Canne Bianche Lifestyle Hotel · King · Breakfast + €100 F&B credit</p>
+    </div>
+  </div>
+  <div class="hotel-card">
+    <div class="hotel-icon">🌾</div>
+    <div class="hotel-info">
+      <div class="hotel-type">Canne Bianche Lifestyle Hotel</div>
+      <h4>Via Appia 32 · Torre Canne di Fasano 72010</h4>
+      <div class="hotel-rating"><span class="g-star">★</span> 4.8 <span style="color:var(--stone);font-weight:300;font-size:.85rem">(700 reviews)</span></div>
+      <p>King room. Avg €635/night with breakfast + €100 F&B credit + upgrade if available. <strong style="color:var(--terracotta)">Full charge €2,540 processed May 31 — nonrefundable.</strong> Conf: 31458SF002039.</p>
+      <div class="dist-bar" style="margin-top:.6rem"><span class="dist-chip">🚗 Next: Movenpick Bari · ~68 km · ~55 min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Canne+Bianche+Lifestyle+Hotel,+Via+Appia+32,+Torre+Canne&destination=Movenpick+Hotel+Bari,+Via+Francesco+Lombardi+13,+Bari&travelmode=driving" target="_blank">📍 Drive to Bari</a></div>
+    </div>
+    <div class="hotel-badge"><div class="nights">4</div><div class="nights-label">Nights</div></div>
+  </div>
+  <div class="anniv-note">🥂 June 17 — Eric &amp; Dori's Anniversary · No reservation yet — book soon</div>
+  <div class="app-box"><span class="app-title">🚕 Torre Canne Transport</span>Dubonnet is 4 min walk — no car needed. Vico Pescatori and Ciriè are walkable (1.3–1.5km) on a summer evening. <strong>No ride apps in Torre Canne or Fasano.</strong> For Grotta Palazzese anniversary dinner, ask Canne Bianche concierge to arrange a private driver (~€60–80 round trip).</div>
+  <div class="days-grid">
+
+    <details class="day-card" open id="day-jun14">
+      <summary class="day-header">
+        <div class="day-number">14</div>
+        <div class="day-date"><div class="weekday">Sunday</div><div class="full-date">June 14 — Arrive Torre Canne</div></div>
+        <div class="day-theme">Drive from San Foca · Dubonnet dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label">Drive</div>
+          <div class="time-details"><h5>San Foca → Torre Canne — ~2 hours</h5>
+          <p>~150km north. Optional Ostuni stop en route. Check in — upgrade may be waiting.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~150 km · ~2h</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Posia+Retreat+Spa,+Via+Lungomare+Matteotti+157,+San+Foca&destination=Canne+Bianche+Lifestyle+Hotel,+Via+Appia+32,+Torre+Canne&travelmode=driving" target="_blank">📍 Drive directions</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Dubonnet</h5>
+          <p>Via Appia Antica 17. Steps from the hotel — a beloved local spot.</p>
+          <div class="booked">✓ Reserved · 7:30 pm <span class="g-rating"><span class="g-star">★</span> 4.6 (461)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 4 min walk from Canne Bianche</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Canne+Bianche+Lifestyle+Hotel,+Via+Appia+32,+Torre+Canne&destination=Dubonnet,+Via+Appia+Antica+17,+Torre+Canne&travelmode=walking" target="_blank">📍 Walk directions</a></div></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- JUNE 15 — MONOPOLI COASTAL RETURN (from PDF) -->
+    <details class="day-card" open id="day-jun15">
+      <summary class="day-header">
+        <div class="day-number">15</div>
+        <div class="day-date"><div class="weekday">Monday</div><div class="full-date">June 15 — Monopoli Coastal Return</div></div>
+        <div class="day-theme">Slow harbor day · Tuttoapposto aperitivo · Vico Pescatori dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">Morning</div>
+          <div class="time-details"><h5>Drive to Monopoli — slow harbor day</h5>
+          <p>Slow harbor walk along Porto Antico. Old town streets, espresso, watch the fishing boats. Polignano a Mare is 15 min north if you want the cliff views again — or stay in Monopoli which is less crowded and more authentic.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 San Foca → Monopoli ~1h 10min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Canne+Bianche+Lifestyle+Hotel,+Via+Appia+32,+Torre+Canne&destination=Monopoli,+Puglia,+Italy&travelmode=driving" target="_blank">📍 Drive to Monopoli</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label aperitivo">Aperitivo</div>
+          <div class="time-details"><h5>Tuttoapposto Winebar — return visit</h5>
+          <p>Via Porto 26. Harbour-view aperitivo hour — Apulian mojito and Puglian wines. One of the best aperitivo spots in Puglia.</p>
+          <span class="aperitivo-tag">🍷 <span class="g-star">★</span> 4.7 · Return to Monopoli harbour · Via Porto 26</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Vico Pescatori</h5>
+          <p>Via Eroi del Mare 101, Torre Canne. Seafood by the ocean near the hotel. Note: closed Wednesdays.</p>
+          <div class="booked">✓ Reserved · 7:30 pm <span class="g-rating"><span class="g-star">★</span> 4.4 (334)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~1.5 km · 4 min from Canne Bianche</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Canne+Bianche+Lifestyle+Hotel,+Via+Appia+32,+Torre+Canne&destination=Vico+Pescatori,+Via+Eroi+del+Mare+101,+Torre+Canne&travelmode=driving" target="_blank">📍 Drive directions</a></div></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="day-card" open id="day-jun16">
+      <summary class="day-header">
+        <div class="day-number">16</div>
+        <div class="day-date"><div class="weekday">Tuesday</div><div class="full-date">June 16 — Masseria + Beach Day</div></div>
+        <div class="day-theme">Hotel beach · olive grove lunch · Ciriè dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-details"><h5>Hotel beach morning</h5>
+          <p>Relaxed morning on Canne Bianche's private protected shoreline. Use the €100 F&B credit at the hotel bar.</p></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label lunch-lbl">Midday</div>
+          <div class="time-details"><h5>Masseria Il Frantoio — olive grove lunch</h5>
+          <p>~10 min toward Fasano. 20+ antipasto dishes, handmade pasta, sheep's ricotta, Primitivo under the olive trees. Call ahead to book.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~10 min from Canne Bianche</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Canne+Bianche+Lifestyle+Hotel,+Via+Appia+32,+Torre+Canne&destination=Masseria+Il+Frantoio,+Fasano,+Italy&travelmode=driving" target="_blank">📍 Drive to masseria</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">7:30 pm</div>
+          <div class="time-details"><h5>Dinner — Ciriè</h5>
+          <p>Via del Faro 121, Torre Canne. Fresh seafood and pizza — a 15-min walk or 4-min drive.</p>
+          <div class="booked">✓ Reserved · 7:30 pm <span class="g-rating"><span class="g-star">★</span> 4.6 (509)</span></div>
+          <div class="dist-bar"><span class="dist-chip">🚶 15 min walk · or 🚗 4 min drive</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Canne+Bianche+Lifestyle+Hotel,+Via+Appia+32,+Torre+Canne&destination=Cirie+Torre+Canne,+Via+del+Faro+121,+Torre+Canne&travelmode=walking" target="_blank">📍 Walk or drive</a></div></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="day-card" open id="day-jun17">
+      <summary class="day-header">
+        <div class="day-number">17</div>
+        <div class="day-date"><div class="weekday">Wednesday 🥂</div><div class="full-date">June 17 — Anniversary</div></div>
+        <div class="day-theme">Eric &amp; Dori's Anniversary · Dinner needed</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label">All Day</div>
+          <div class="time-details"><h5>Full spa &amp; beach day at Canne Bianche</h5>
+          <p>Morning swim, spa treatments, pool. Let Canne Bianche take care of you.</p></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-details"><h5>Anniversary dinner — book soon</h5>
+          <p>Two options: <strong>Canne Bianche hotel restaurant</strong> (on-site, use remaining F&B credit), or <strong>Grotta Palazzese</strong> in Polignano a Mare — a cave carved over the sea, one of the most romantic restaurants in Italy at dinner.</p>
+          <div class="dist-bar"><span class="dist-chip">Option A: 🚶 On-site at Canne Bianche</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Canne+Bianche+Lifestyle+Hotel,+Via+Appia+32,+Torre+Canne&destination=Grotta+Palazzese,+Polignano+a+Mare,+Italy&travelmode=driving" target="_blank">📍 Option B: Grotta Palazzese (~35 min)</a></div>
+          <div class="ride-advice"><span>🚕</span><span>For Grotta Palazzese: ask Canne Bianche concierge for a private driver. ~€60–80 round trip. Worth it so both of you can enjoy the wine fully.</span></div>
+          <span class="tip">⚠️ Not yet booked — reserve soon</span></div>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</div>
+</div>
+
+<div class="section-divider"><span>The Capital of Puglia</span></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- BARI -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="bari">
+<div class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">VI</div>
+    <div class="chapter-meta">
+      <div class="chapter-tag">June 18 – 21 &nbsp;·&nbsp; 3 Nights</div>
+      <h2 class="chapter-title">Bari,<br><em>Grand Finale</em></h2>
+      <p class="chapter-sub">Movenpick Hotel Bari · Classic · Via Francesco Lombardi 13 · Breakfast included</p>
+    </div>
+  </div>
+  <div class="hotel-card">
+    <div class="hotel-icon">🏙️</div>
+    <div class="hotel-info">
+      <div class="hotel-type">Movenpick Hotel Bari</div>
+      <h4>Via Francesco Lombardi 13 · Bari 70022</h4>
+      <div class="hotel-rating"><span class="g-star">★</span> 4.2 <span style="color:var(--stone);font-weight:300;font-size:.85rem">(233 reviews)</span></div>
+      <p>Classic room. ~$278/night with breakfast. Cancel 2 days prior. Conf: C2W0AFH0512. Car drop-off at Bari airport June 21 at 11am.</p>
+    </div>
+    <div class="hotel-badge"><div class="nights">3</div><div class="nights-label">Nights</div></div>
+  </div>
+  <div class="app-box"><span class="app-title">🚕 Getting Around Bari</span><strong>itTaxi</strong> is the app — download before arriving. Phone: <strong>+39 080 534 3333</strong> (accepts WhatsApp). Movenpick to Bari Vecchia is a <strong>15-min walk along the waterfront</strong> — leave the car parked for all three days. Use itTaxi for late-night returns.</div>
+  <div class="days-grid">
+
+    <!-- JUNE 18 — ARRIVE BARI -->
+    <details class="day-card" open id="day-jun18">
+      <summary class="day-header">
+        <div class="day-number">18</div>
+        <div class="day-date"><div class="weekday">Thursday</div><div class="full-date">June 18 — Arrive Bari</div></div>
+        <div class="day-theme">Drive from Torre Canne · La Ciclatera aperitivo · Le Nicchie dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label">Drive</div>
+          <div class="time-details"><h5>Torre Canne → Bari — ~55 min</h5>
+          <p>Check in. Leave the car for the rest of the stay — walking and itTaxi from here.</p>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~68 km · ~55 min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Canne+Bianche+Lifestyle+Hotel,+Via+Appia+32,+Torre+Canne&destination=Movenpick+Hotel+Bari,+Via+Francesco+Lombardi+13,+Bari&travelmode=driving" target="_blank">📍 Drive directions</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label aperitivo">Evening</div>
+          <div class="time-details"><h5>Aperitivo — La Ciclatera Under the Sea</h5>
+          <p>Viale Venezia 16. Campari Spritz by the Adriatic — one of Bari's best aperitivo settings. Walk from the hotel along the seafront.</p>
+          <span class="aperitivo-tag">🍹 Campari Spritz by the sea <span class="g-star">★</span> 4.5 · Viale Venezia 16</span>
+          <div class="dist-bar"><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Movenpick+Hotel+Bari,+Via+Francesco+Lombardi+13,+Bari&destination=La+Ciclatera+Under+the+Sea,+Viale+Venezia+16,+Bari&travelmode=walking" target="_blank">📍 Walk to La Ciclatera</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Dinner</div>
+          <div class="time-details"><h5>Suggested: Le Nicchie — Bari Vecchia</h5>
+          <p>Vico Corsioli 11b. The essential Bari dinner — <strong>spaghetti all'assassina</strong>, Bari's most famous dish: charred pasta in spicy tomato sauce cooked in a cast-iron pan. 3 min walk from Via Arco Basso.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 ~18 min walk from Movenpick</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Movenpick+Hotel+Bari,+Via+Francesco+Lombardi+13,+Bari&destination=Le+Nicchie,+Vico+Corsioli+11b,+Bari+Vecchia,+Bari&travelmode=walking" target="_blank">📍 Walk to Le Nicchie</a></div>
+          <span class="g-rating"><span class="g-star">★</span> 4.7</span>
+          <span class="tip">⚠️ Not yet booked — reserve ahead</span></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- JUNE 19 — BARI GRAND FINALE (from PDF) -->
+    <details class="day-card" open id="day-jun19">
+      <summary class="day-header">
+        <div class="day-number">19</div>
+        <div class="day-date"><div class="weekday">Friday</div><div class="full-date">June 19 — Bari Grand Finale</div></div>
+        <div class="day-theme">Via Arco Basso nonnas · San Nicola · stracciatella · Lungomare walk</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">7:00 am</div>
+          <div class="time-details"><h5>Fish market at the port</h5>
+          <p>Closes by 10am. Worth a brief early visit for the theater and energy of southern Italian market life.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 10 min walk from Movenpick</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Movenpick+Hotel+Bari,+Via+Francesco+Lombardi+13,+Bari&destination=Mercato+del+Pesce,+Bari,+Italy&travelmode=walking" target="_blank">📍 Walk to fish market</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Morning</div>
+          <div class="time-details"><h5>Via Arco Basso — orecchiette nonnas + Basilica di San Nicola</h5>
+          <p>The orecchiette women of Strada dell'Arco Basso are a living tradition — watch them work and buy pasta directly to take home. Then the Basilica di San Nicola: the Byzantine crypt with its ancient columns is one of the finest Romanesque interiors in southern Italy.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 Fish market → Basilica: 8 min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Mercato+del+Pesce,+Bari,+Italy&destination=Basilica+di+San+Nicola,+Bari,+Italy&travelmode=walking" target="_blank">📍 Walk in Bari Vecchia</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label lunch-lbl">Midday</div>
+          <div class="time-details"><h5>Stracciatella tasting + local wine — Bari Vecchia</h5>
+          <p>Find an alimentari or small enoteca in the old city for fresh stracciatella (the interior of burrata, silkier and more intense) with local Primitivo. The definitive Pugliese midday break.</p></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Evening</div>
+          <div class="time-details"><h5>Final coastal walk — Lungomare Nazario Sauro</h5>
+          <p>The Lungomare stretches for miles along the Adriatic — the perfect farewell Puglia walk at sunset. All of Bari walks here in the evening.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 5 min from Movenpick</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Movenpick+Hotel+Bari,+Via+Francesco+Lombardi+13,+Bari&destination=Lungomare+Nazario+Sauro,+Bari,+Italy&travelmode=walking" target="_blank">📍 Walk to Lungomare</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Dinner</div>
+          <div class="time-details"><h5>Suggested: Il Buco or Sgridd</h5>
+          <p>Il Buco (Via Vallisa, Bari Vecchia) — seafood trattoria, old city atmosphere, great spaghetti alle vongole. Sgridd (Murattiano district) — natural wine bar, daily blackboard menu.</p>
+          <span class="tip">⚠️ Not yet booked — reserve ahead for Friday</span></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- JUNE 20 — TRANI DAY TRIP -->
+    <details class="day-card" open id="day-jun20">
+      <summary class="day-header">
+        <div class="day-number">20</div>
+        <div class="day-date"><div class="weekday">Saturday</div><div class="full-date">June 20 — Trani Day Trip</div></div>
+        <div class="day-theme">Puglia's most underrated town · farewell dinner</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">Morning</div>
+          <div class="time-details"><h5>Train to Trani — 40 min</h5>
+          <p>A Romanesque cathedral built directly on a promontory over the sea — one of the most beautiful buildings in Puglia and barely known outside Italy. Medieval Jewish quarter. Almost no tourists.</p>
+          <div class="dist-bar"><span class="dist-chip">🚆 Train from Bari Centrale: 40 min · 🚶 15 min walk to station</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Movenpick+Hotel+Bari,+Via+Francesco+Lombardi+13,+Bari&destination=Bari+Centrale+Station,+Bari,+Italy&travelmode=walking" target="_blank">📍 Walk to Bari Centrale</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label lunch-lbl">Lunch</div>
+          <div class="time-details"><h5>Seafood on Trani harbor</h5>
+          <p>Fresh catch, chilled local white wine, harbor views — the perfect final Italian meal before Paris.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 Trani station → harbor: 12 min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Trani+Train+Station,+Trani,+Italy&destination=Porto+di+Trani,+Trani,+Italy&travelmode=walking" target="_blank">📍 Walk to Trani harbor</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Dinner</div>
+          <div class="time-details"><h5>Suggested: Farewell Puglia dinner in Bari</h5>
+          <p>Cielo e Terra for creative modern Pugliese cuisine. Pack for Paris tonight.</p>
+          <span class="tip">⚠️ Saturday night — reserve well ahead</span></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="day-card" open id="day-jun21a">
+      <summary class="day-header">
+        <div class="day-number">21</div>
+        <div class="day-date"><div class="weekday">Sunday</div><div class="full-date">June 21 — Fly to Paris</div></div>
+        <div class="day-theme">Car return 11am · Paris II begins</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label">11:00 am</div>
+          <div class="time-details"><h5>Car drop-off — Bari airport</h5>
+          <p>Return Avis (Conf: 44631977US5). Allow 45 min from Movenpick.</p>
+          <div class="booked">✓ Avis return confirmed · 11:00 am</div>
+          <div class="dist-bar"><span class="dist-chip">🚗 ~11 km · ~20 min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Movenpick+Hotel+Bari,+Via+Francesco+Lombardi+13,+Bari&destination=Bari+Karol+Wojtyla+Airport,+Bari,+Italy&travelmode=driving" target="_blank">📍 Drive to airport</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Fly</div>
+          <div class="time-details"><h5>Bari → Paris · Edouard 7 check-in</h5>
+          <p>Check into Hôtel Edouard 7 Paris Opéra, 39 Avenue de l'Opéra (75002). Three nights for the finest Paris leg of the trip.</p></div>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</div>
+</div>
+
+
+<div class="section-divider"><span>Paris, Revisited</span></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PARIS II -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="paris2">
+<div class="chapter paris-theme">
+  <div class="chapter-header">
+    <div class="chapter-num">VII</div>
+    <div class="chapter-meta">
+      <div class="chapter-tag">June 21 – 24 &nbsp;·&nbsp; 3 Nights</div>
+      <h2 class="chapter-title">Paris,<br><em>The Return</em></h2>
+      <p class="chapter-sub">Hôtel Edouard 7 Paris Opéra · Classic Queen · 39 Avenue de l'Opéra · Breakfast included</p>
+    </div>
+  </div>
+  <div class="hotel-card">
+    <div class="hotel-icon">🗼</div>
+    <div class="hotel-info">
+      <div class="hotel-type">Hôtel Edouard 7 Paris Opéra</div>
+      <h4>39 Avenue de l'Opéra · Paris 75002</h4>
+      <div class="hotel-rating"><span class="g-star">★</span> 4.5 <span style="color:var(--stone);font-weight:300;font-size:.85rem">(587 reviews)</span></div>
+      <p>Classic Queen with breakfast. Avg €489/night. Cancel 48 hours prior. Conf: 46045SF006107. No dinner reservations yet — all three evenings need booking.</p>
+    </div>
+    <div class="hotel-badge"><div class="nights">3</div><div class="nights-label">Nights</div></div>
+  </div>
+  <div class="app-box"><span class="app-title">🇫🇷 Getting Around Paris II</span><strong>Uber</strong> works perfectly. <strong>G7</strong> (+33 1 47 39 47 39) as backup. Latin Quarter evenings: Uber home ~€12–18. Walk during the day — Palais Royal is 2 min from the hotel. Save Uber for evenings after wine.</div>
+  <div class="days-grid">
+
+    <details class="day-card" open id="day-jun21b">
+      <summary class="day-header">
+        <div class="day-number">21</div>
+        <div class="day-date"><div class="weekday">Sunday</div><div class="full-date">June 21 — Arrive Paris II</div></div>
+        <div class="day-theme">Covered passages · dinner needed</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">Arrive</div>
+          <div class="time-details"><h5>Galerie Vivienne + Passage des Panoramas</h5><p>Drop bags and walk immediately to Galerie Vivienne (3 min) and Passage des Panoramas — the oldest surviving passage in Paris.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 3 min walk from hotel</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Edouard+VII,+39+Avenue+de+l+Opera,+Paris&destination=Galerie+Vivienne,+Paris&travelmode=walking" target="_blank">📍 Walk to Galerie Vivienne</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Dinner</div>
+          <div class="time-details"><h5>Suggested: Frenchie or Le Pantruche</h5><p>Frenchie (Rue du Nil, 2nd): neo-bistro movement origins, brilliant cooking. Le Pantruche (SoPi): classic French executed perfectly. Both need advance booking on Sunday.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 Frenchie: 8 min · Le Pantruche: 15 min</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Edouard+VII,+39+Avenue+de+l+Opera,+Paris&destination=Frenchie,+5+Rue+du+Nil,+Paris&travelmode=walking" target="_blank">📍 Walk to Frenchie</a></div>
+          <span class="tip">⚠️ Not yet booked — reserve soon</span></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="day-card" open id="day-jun22">
+      <summary class="day-header">
+        <div class="day-number">22</div>
+        <div class="day-date"><div class="weekday">Monday</div><div class="full-date">June 22 — SoPi &amp; Left Bank</div></div>
+        <div class="day-theme">Rue des Martyrs · Latin Quarter · dinner needed</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">Morning</div>
+          <div class="time-details"><h5>Rue des Martyrs — Paris's best food street</h5><p>18 min walk north into the 9th. Cheese, wine, charcuterie, bread, pastries — entirely neighborhood, zero tourists.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 18 min walk north · or Métro 7 → Le Peletier (5 min)</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Edouard+VII,+39+Avenue+de+l+Opera,+Paris&destination=Rue+des+Martyrs,+Paris&travelmode=walking" target="_blank">📍 Walk to Rue des Martyrs</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label sight">Afternoon</div>
+          <div class="time-details"><h5>Latin Quarter — 5th &amp; 6th arrondissements</h5><p>Métro 4 → Saint-Michel. Walk Rue Mouffetard, the Jardin des Plantes, cobbled streets near Rue de la Huchette. Musée de Cluny (Lady and the Unicorn tapestries) is compact and extraordinary.</p>
+          <div class="dist-bar"><span class="dist-chip">🚇 Métro 4 → Saint-Michel (~15 min)</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Rue+des+Martyrs,+Paris&destination=Rue+Mouffetard,+Paris&travelmode=transit" target="_blank">📍 Transit to Latin Quarter</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Dinner</div>
+          <div class="time-details"><h5>Suggested: Semilla or Les Papilles — 6th arr.</h5><p>Semilla (Rue de Seine): natural wines, intelligent cooking. Les Papilles: wine shop and restaurant in one, no menu, consistently excellent.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 5–8 min from Saint-Michel</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Musee+de+Cluny,+Paris&destination=Semilla,+54+Rue+de+Seine,+Paris&travelmode=walking" target="_blank">📍 Walk to Semilla</a></div>
+          <div class="ride-advice"><span>🚕</span><span>Coming home from the Left Bank late: <strong>Uber is easiest</strong> (~€14–18 to the 2nd). Métro stops ~1am weeknights.</span></div>
+          <span class="tip">⚠️ Not yet booked — reserve soon</span></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="day-card" open id="day-jun23">
+      <summary class="day-header">
+        <div class="day-number">23</div>
+        <div class="day-date"><div class="weekday">Tuesday</div><div class="full-date">June 23 — Final Full Day</div></div>
+        <div class="day-theme">Palais Royal · Le Grand Véfour · jazz</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label sight">Morning</div>
+          <div class="time-details"><h5>Palais Royal gardens + antiquarian arcades</h5><p>2 min from the hotel. The arcades, Daniel Buren columns, antique print dealers. A genuinely Parisian morning with no crowds.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 2 min walk</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Edouard+VII,+39+Avenue+de+l+Opera,+Paris&destination=Palais+Royal,+Paris&travelmode=walking" target="_blank">📍 Walk to Palais Royal</a></div></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Dinner</div>
+          <div class="time-details"><h5>Suggested: Le Grand Véfour — farewell dinner</h5><p>17 Rue de Beaujolais — inside the Palais Royal arcade. Founded 1784, dining room is a listed monument. Michelin-starred. A magnificent final dinner.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 4 min walk · inside Palais Royal arcade</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Edouard+VII,+39+Avenue+de+l+Opera,+Paris&destination=Le+Grand+Vefour,+17+Rue+de+Beaujolais,+Paris&travelmode=walking" target="_blank">📍 Walk to Le Grand Véfour</a></div>
+          <span class="tip">⚠️ Not yet booked — reserve well ahead</span></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label aperitivo">Evening</div>
+          <div class="time-details"><h5>Jazz — New Morning or Le Caveau de la Huchette</h5><p>New Morning (10th arr.): Paris's legendary jazz venue. Le Caveau de la Huchette: medieval cave, Dixieland and swing nightly. End the trip with live music and a glass of Burgundy.</p>
+          <div class="dist-bar"><span class="dist-chip">🚶 New Morning: 20 min walk · Le Caveau: Métro 4 → Saint-Michel</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Edouard+VII,+39+Avenue+de+l+Opera,+Paris&destination=New+Morning+Jazz+Club,+Paris&travelmode=walking" target="_blank">📍 Walk to New Morning</a></div></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="day-card" open id="day-jun24">
+      <summary class="day-header">
+        <div class="day-number">24</div>
+        <div class="day-date"><div class="weekday">Wednesday</div><div class="full-date">June 24 — Departure</div></div>
+        <div class="day-theme">Checkout · CDG</div>
+        <span class="day-toggle">▾</span>
+      </summary>
+      <div class="day-content">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-details"><h5>Final espresso + checkout</h5><p>One last coffee at a zinc bar on the Grands Boulevards. Check out of Edouard 7.</p>
+          <div class="dist-bar"><span class="dist-chip">🚇 RER B from Châtelet → CDG ~45 min · 🚶 10 min walk to Châtelet</span><a class="maps-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Edouard+VII,+39+Avenue+de+l+Opera,+Paris&destination=Charles+de+Gaulle+Airport,+Paris&travelmode=transit" target="_blank">📍 Transit to CDG</a></div>
+          <div class="ride-advice"><span>🚕</span><span><strong>Uber to CDG strongly recommended</strong> with luggage — ~€55–70, ~45 min. Much easier than RER.</span></div></div>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</div>
+</div>
+
+<footer>
+  <p>Eric &amp; Dori Cook &nbsp;·&nbsp; June 1–24, 2026</p>
+  <p class="conf" style="margin-top:.8rem">Invoice 982117490 &nbsp;·&nbsp; Record MOLZEA &nbsp;·&nbsp; Global Travel Collection &nbsp;·&nbsp; Jan Hammond</p>
+  <p class="conf">Emergency Travel: 800-928-2562 · Code Y0B0 Yellow Zero Bravo Zero</p>
+</footer>
+
+<script>
+// ── NAV SCROLL ───────────────────────────────────────────────────────────────
+function scrollToSection(id, btn) {
+  document.getElementById(id)?.scrollIntoView({ behavior:'smooth', block:'start' });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+const sections = ['paris1','matera','ostuni','sanfoca','torrecanne','bari','paris2'];
+const navBtns = document.querySelectorAll('.nav-btn');
+sections.forEach((id,i) => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navBtns.forEach(b => b.classList.remove('active'));
+        navBtns[i]?.classList.add('active');
+      }
+    });
+  }, { threshold:0.15 }).observe(el);
+});
+
+// ── AUTO-OPEN TO TODAY ───────────────────────────────────────────────────────
+(function() {
+  // Map each date to a day-card id and section
+  const schedule = [
+    { date:'2026-06-01', id:'day-jun01', section:'paris1',   label:'June 1 — Arrival, Paris' },
+    { date:'2026-06-02', id:'day-jun02', section:'paris1',   label:'June 2 — Full Day, Paris' },
+    { date:'2026-06-03', id:'day-jun03', section:'paris1',   label:'June 3 — Fly to Bari' },
+    { date:'2026-06-04', id:'day-jun04', section:'matera',   label:'June 4 — Full Matera Day' },
+    { date:'2026-06-05', id:'day-jun05', section:'matera',   label:'June 5 — Cave Exploration Day, Matera' },
+    { date:'2026-06-06', id:'day-jun06', section:'ostuni',   label:'June 6 — Drive: Matera → Alberobello → Locorotondo → Ostuni' },
+    { date:'2026-06-07', id:'day-jun07', section:'ostuni',   label:'June 7 — Ostuni + Masseria' },
+    { date:'2026-06-08', id:'day-jun08', section:'ostuni',   label:'June 8 — Monopoli + Polignano' },
+    { date:'2026-06-09', id:'day-jun09', section:'ostuni',   label:'June 9 — Valle d\'Itria Day' },
+    { date:'2026-06-10', id:'day-jun10', section:'sanfoca',  label:'June 10 — Arrive San Foca' },
+    { date:'2026-06-11', id:'day-jun11', section:'sanfoca',  label:'June 11 — Lecce Day' },
+    { date:'2026-06-12', id:'day-jun12', section:'sanfoca',  label:'June 12 — Retreat Day' },
+    { date:'2026-06-13', id:'day-jun13', section:'sanfoca',  label:'June 13 — Otranto + Coast' },
+    { date:'2026-06-14', id:'day-jun14', section:'torrecanne', label:'June 14 — Arrive Torre Canne' },
+    { date:'2026-06-15', id:'day-jun15', section:'torrecanne', label:'June 15 — Polignano Return' },
+    { date:'2026-06-16', id:'day-jun16', section:'torrecanne', label:'June 16 — Masseria Day' },
+    { date:'2026-06-17', id:'day-jun17', section:'torrecanne', label:'June 17 — Anniversary 🥂' },
+    { date:'2026-06-18', id:'day-jun18', section:'bari',     label:'June 18 — Arrive Bari' },
+    { date:'2026-06-19', id:'day-jun19', section:'bari',     label:'June 19 — Bari Deep Dive' },
+    { date:'2026-06-20', id:'day-jun20', section:'bari',     label:'June 20 — Trani Day Trip' },
+    { date:'2026-06-21', id:'day-jun21b', section:'paris2',  label:'June 21 — Arrive Paris II' },
+    { date:'2026-06-22', id:'day-jun22', section:'paris2',   label:'June 22 — SoPi & Left Bank' },
+    { date:'2026-06-23', id:'day-jun23', section:'paris2',   label:'June 23 — Final Day, Paris' },
+    { date:'2026-06-24', id:'day-jun24', section:'paris2',   label:'June 24 — Departure' },
+  ];
+
+  const today = new Date();
+  const todayStr = today.toISOString().slice(0,10);
+  const match = schedule.find(d => d.date === todayStr);
+
+  if (match) {
+    // Show banner
+    const banner = document.getElementById('todayBanner');
+    const text = document.getElementById('todayText');
+    const jump = document.getElementById('todayJump');
+    text.innerHTML = 'Today is <strong>' + match.label + '</strong>';
+    jump.href = '#' + match.id;
+    jump.onclick = function(e) {
+      e.preventDefault();
+      const el = document.getElementById(match.id);
+      if (el) {
+        el.open = true;
+        el.scrollIntoView({ behavior:'smooth', block:'start' });
+      }
+    };
+    banner.style.display = 'flex';
+
+    // After a short delay, auto-scroll to today's card and open it
+    setTimeout(function() {
+      const el = document.getElementById(match.id);
+      if (el) {
+        el.open = true;
+        // Close all other cards in the same section for a cleaner view
+        document.querySelectorAll('details.day-card').forEach(d => {
+          if (d.id !== match.id) d.open = false;
+        });
+        el.scrollIntoView({ behavior:'smooth', block:'start' });
+      }
+    }, 800);
+  }
+})();
+</script>
+</body>
+</html>
